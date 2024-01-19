@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/home/ui/home_view.dart';
-import 'package:shoply/signup-login/signup.dart';
+import 'package:shoply/core/utils/theme.dart';
+import 'package:shoply/features/layout/layout_view.dart';
+
 
 void main() {
   runApp(const ShoplyApp());
@@ -11,9 +12,10 @@ class ShoplyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:SignUpScreen(),
+      theme: lightTheme,
+      home:const LayoutView(),
     );
   }
 }
