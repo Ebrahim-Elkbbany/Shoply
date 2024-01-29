@@ -95,49 +95,20 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "orders",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "orders",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
-                            Text('my orders '),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    height: 76,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Shopping",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                              'Address',
-                              style: TextStyle(fontSize: 15),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text('my orders '),
                             ),
                           ],
                         ),
@@ -162,15 +133,102 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "Payment",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Shopping",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
-                            Text('cards'),
+                            Padding(
+                              padding: EdgeInsets.all(.5),
+                              child: Text(
+                                'Address',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.arrow_forward_ios))
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    width: 350,
+                    height: 76,
+                    color: Colors.white70,
+                    child: Row(
+                      children: [
+                        const Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Favorite",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(.5),
+                              child: Text(
+                                'Favorite',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.arrow_forward_ios))
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: 350,
+                    height: 76,
+                    color: Colors.white70,
+                    child: Row(
+                      children: [
+                        const Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Payment",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(.5),
+                              child: Text('cards'),
+                            ),
                           ],
                         ),
                         const Spacer(),
@@ -194,15 +252,21 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "Reviews",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Reviews",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
-                            Text('ccomments'),
+                            Padding(
+                              padding: EdgeInsets.all(.5),
+                              child: Text('ccomments'),
+                            ),
                           ],
                         ),
                         const Spacer(),
@@ -226,15 +290,21 @@ class _ProfileState extends State<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "Setting",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Setting",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
                             ),
                             SizedBox(
                               height: 3,
                             ),
-                            Text('password'),
+                            Padding(
+                              padding: EdgeInsets.all(.5),
+                              child: Text('password'),
+                            ),
                           ],
                         ),
                         const Spacer(),
