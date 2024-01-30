@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/features/signup-login/shared_customs/constants_class.dart';
-
-
 
 class PasswordTextField extends StatefulWidget {
   PasswordTextField(
@@ -18,9 +15,7 @@ class PasswordTextField extends StatefulWidget {
   State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> with Constants  {
-
-
+class _PasswordTextFieldState extends State<PasswordTextField> {
   bool isSelected = false;
 
   @override
@@ -29,17 +24,19 @@ class _PasswordTextFieldState extends State<PasswordTextField> with Constants  {
       obscureText: true,
       decoration: InputDecoration(
         hintText: widget.text,
-        hintStyle: TextStyle(color: hintColor,fontSize: 22),
-
-        border: UnderlineInputBorder(borderSide: BorderSide(color:hintColor)),
+        hintStyle: TextStyle(color: Colors.black87, fontSize: 22),
+        border:
+            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black87)),
         contentPadding: const EdgeInsets.all(16),
-
         suffixIcon: InkWell(
             onTap: () {
               setState(() {
-                isSelected=!isSelected;
+                isSelected = !isSelected;
               });
-            }, child: Icon(isSelected?Icons.visibility_rounded:Icons.visibility_off_sharp)),
+            },
+            child: Icon(isSelected
+                ? Icons.visibility_rounded
+                : Icons.visibility_off_sharp)),
       ),
     );
   }

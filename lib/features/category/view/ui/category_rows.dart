@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/product/product_details.dart';
-import 'package:shoply/features/signup-login/shared_customs/constants_class.dart';
 
-class CategoryRows extends StatelessWidget with Constants {
+class CategoryRows extends StatelessWidget {
   CategoryRows({Key? key, required this.categoryList}) : super(key: key);
   final List<String> categoryList;
   int idx = -1;
@@ -34,7 +33,7 @@ class CategoryRows extends StatelessWidget with Constants {
                       width: 580,
                       height: 100,
                       decoration: BoxDecoration(
-                        color: containerColor,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Row(

@@ -51,9 +51,8 @@ class Category extends StatelessWidget {
                       Container(
                         height: 520,
                         decoration: BoxDecoration(
-                          color: Color(0xfff0e4e1),
-                          borderRadius: BorderRadius.circular(18)
-                        ),
+                            color: Color(0xfff0e4e1),
+                            borderRadius: BorderRadius.circular(18)),
                       ),
                       SizedBox(
                         height: 550,

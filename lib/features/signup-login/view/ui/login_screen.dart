@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/signup-login/controllersProvider.dart';
-import 'package:shoply/features/signup-login/shared_customs/constants_class.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_button.dart';
 import 'package:shoply/features/signup-login/shared_customs/my_text_field.dart';
 import 'package:shoply/features/signup-login/shared_customs/password_textfield.dart';
 
-class LoginScreen extends StatelessWidget with Constants {
+class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: backgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         body: ChangeNotifierProvider(
           create: (context) => ControllerProvider(),
           child: SingleChildScrollView(
@@ -29,14 +29,14 @@ class LoginScreen extends StatelessWidget with Constants {
                   Text(
                     "Hello!",
                     style: TextStyle(
-                        color: deepColor,
+                        color: Colors.black87,
                         fontSize: 33,
                         fontWeight: FontWeight.w300),
                   ),
                   Text(
                     "Welcome Back",
                     style: TextStyle(
-                        color: deepColor,
+                        color: Colors.black,
                         fontSize: 33,
                         fontWeight: FontWeight.w300),
                   ),
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget with Constants {
                           width: 400,
                           height: 400,
                           decoration: BoxDecoration(
-                              color: containerColor,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(19)),
                           child: Column(
                             children: [
