@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/signup-login/shared_customs/constants_class.dart';
+import 'package:shoply/features/signup-login/shared_customs/constants_class.dart';
+
 
 class CategoryRows extends StatelessWidget with Constants {
   CategoryRows({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/core/utils/theme.dart';
-import 'package:shoply/features/layout/layout_view.dart';
+import 'package:shoply/features/home/ui/home_view.dart';
 
 
 void main() {
@@ -12,10 +11,9 @@ class ShoplyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      home:const LayoutView(),
+      home:HomeView(),
     );
   }
 }

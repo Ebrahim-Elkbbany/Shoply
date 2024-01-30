@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shoply/features/category/view/ui/category.dart';
+
 import 'package:shoply/features/home/ui/home_view.dart';
 import 'package:shoply/features/product/product_details.dart';
-import '../../../category/category.dart';
+
 import '../../profile/profile.dart';
 
 
