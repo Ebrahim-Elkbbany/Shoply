@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/features/home/ui/home_view.dart';
+
+import 'package:shoply/features/layout/layout_view.dart';
 
 
 void main() {
@@ -13,7 +14,7 @@ class ShoplyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:HomeView(),
+      home:LayoutView(),
     );
   }
 }
