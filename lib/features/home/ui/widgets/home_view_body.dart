@@ -36,7 +36,7 @@ class HomeViewBody extends StatelessWidget {
                   height: 20,
                 ),
                 CategoryListView(
-                  categoryList: value.categoryList,
+                  categoryList: value.categoryList
                 ),
                 const SizedBox(
                   height: 25,
@@ -52,7 +52,7 @@ class HomeViewBody extends StatelessWidget {
                   height: 20,
                 ),
                 ProductGridView(
-                  products: value.productList,
+                  products:value.productList,
                 ),
               ],
             );
