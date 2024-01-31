@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../cart/ui/cart.dart';
 import '../home/models/products_model.dart';
 import 'logic_prov.dart';
 
@@ -8,6 +9,10 @@ class ProductDetails extends StatelessWidget {
   ProductDetails({super.key, required this.details});
 
   late final ProductModel details;
+
+  TextEditingController image = TextEditingController();
+  TextEditingController title = TextEditingController();
+  TextEditingController price = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +197,6 @@ class ProductDetails extends StatelessWidget {
                     const SizedBox(
                       width: 40,
                     ),
-
                     Consumer<help>(builder: (context, help, child) {
                       return ElevatedButton(
                         style: ButtonStyle(
@@ -203,7 +207,11 @@ class ProductDetails extends StatelessWidget {
                           maximumSize: MaterialStateProperty.all<Size>(
                               const Size(300.0, 60.0)),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Cart(image: image.text, title: title.text, price: price.text))
+                          );
+
+                          },
                         child: const Text(
                           "Add to cart",
                           style: TextStyle(

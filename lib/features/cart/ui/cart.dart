@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../product/logic_prov.dart';
+import '../logic/sql_provider.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+  final String image;
+  final String title;
+  final String price;
+
+  const Cart({required this.image,required this.title, required this.price,super.key});
 
   @override
   State<Cart> createState() => _CartState();
@@ -9,42 +17,8 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
 
-  List imagesList = [
-    'https://timberchic.com/cdn/shop/products/VXcgwu3JSVe4cdD4JnPf_freestone_2.png?v=1620666247',
-    'https://www.stikwood.com/cdn/shop/files/StikwoodReclaimedSierraSilverMasterBedroomAccentWall.png?v=1690402509',
-    'https://m.media-amazon.com/images/I/81ADqF6FfFL._AC_UF350,350_QL80_.jpg'
-  ];
+  List products = [];
 
-  List imagesTitle = [
-    'Minimal Stand',
-    'Coffee Table',
-    'Minimal Desk'
-  ];
-
-  List prices = [
-    '\$25.00',
-    '\$50.00',
-    '\$60.00'
-  ];
-
-
-  int counter = 0;
-
-  void _increment(){
-
-    setState(() {
-      if(counter>=0&&counter<10) {
-        counter++;
-      }
-    });
-  }
-  void _decrement() {
-    setState(() {
-      if (counter > 1) {
-        counter--;
-      }
-    });
-  }
   TextEditingController promoCode = TextEditingController();
 
   @override
@@ -68,103 +42,115 @@ class _CartState extends State<Cart> {
                 children: [
                   SizedBox(
                     height: 550,
-                    child: ListView.builder(
-                      itemCount: imagesList.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const SizedBox(width: 20,),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    imagesList[index],
-                                    height: 116, width: 112,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(width: 25,),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      imagesTitle[index],
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 17
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4,),
-                                    Text(
-                                      prices[index],
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16
-                                      ),
-                                    ),
-                                    const SizedBox(height: 25,),
-                                    Row(
+                    child: FutureBuilder(
+                      future: CartProvider.instance.getAllCart(),
+                      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                        return ListView.builder(
+                            itemCount: products.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(vertical: 10),
+                                    child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            color: Colors.grey
-                                          ),
-                                          height: 40, width: 40,
-                                          child: IconButton(
-                                            onPressed: _decrement,
-                                            icon: const Icon(Icons.remove, size: 20,),
+                                        const SizedBox(width: 20,),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.network(
+                                            widget.image,
+                                            height: 116, width: 112,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                        const SizedBox(width: 10,),
-                                        Text('$counter',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold
-                                          ),
+                                        const SizedBox(width: 25,),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              widget.title,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 17
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4,),
+                                            Text(
+                                              widget.price,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16
+                                              ),
+                                            ),
+                                            const SizedBox(height: 25,),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      color: Colors.grey
+                                                  ),
+                                                  height: 40, width: 40,
+                                                  child: Consumer<help>(builder: (context, help, child) {
+                                                    return IconButton(
+                                                      onPressed: () {
+                                                        help.decrease();
+                                                      },
+                                                      icon: const Icon(Icons.remove, size: 20,),
+                                                    );
+                                                  }),
+
+                                                ),
+                                                const SizedBox(width: 10,),
+                                                Consumer<help>(builder: (context, help , child) {
+                                                  return Text('${help.count}');
+                                                }
+                                                ),
+                                                const SizedBox(width: 10,),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      color: Colors.grey
+                                                  ),
+                                                  height: 40, width: 40,
+                                                  child: Consumer<help>(builder: (context, help, child) {
+                                                    return IconButton(
+                                                      onPressed: () {
+                                                        help.increase();
+                                                      },
+                                                      icon: const Icon(Icons.add, size: 20,),
+                                                    );
+                                                  }),
+                                                ),
+                                              ],
+                                            )
+                                          ],
                                         ),
-                                        const SizedBox(width: 10,),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              color: Colors.grey
-                                          ),
-                                          height: 40, width: 40,
-                                          child: IconButton(
-                                            onPressed: _increment,
-                                            icon: const Icon(Icons.add, size: 20,),
-                                          ),
+                                        const SizedBox(width: 65,),
+                                        IconButton(
+                                          onPressed: () {
+                                            products.removeAt(index);
+                                            setState(() {
+                                            });
+                                          },
+                                          icon: const Icon(Icons.close_outlined),
                                         ),
                                       ],
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(width: 65,),
-                                IconButton(
-                                  onPressed: () {
-                                    imagesList.removeAt(index);
-                                    setState(() {
-                                    });
-                                  },
-                                  icon: const Icon(Icons.close_outlined),
+                                    ),
                                   ),
-                              ],
-                            ),
-                          ),
-                          const Divider(),
-                        ],
-                      );
-                    }),
+                                  const Divider(),
+                                ],
+                              );
+                            });
+                      },
+                    ),
                   ),
                   TextField(
                     controller: promoCode,
