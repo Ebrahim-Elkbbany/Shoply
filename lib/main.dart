@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shoply/core/utils/theme.dart';
 import 'package:shoply/features/layout/layout_view.dart';
 
 
@@ -12,9 +12,10 @@ class ShoplyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:LayoutView(),
+      theme: lightTheme,
+      home:const LayoutView(),
     );
   }
 }
