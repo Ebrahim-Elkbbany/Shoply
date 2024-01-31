@@ -192,22 +192,26 @@ class ProductDetails extends StatelessWidget {
                     const SizedBox(
                       width: 40,
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black),
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(280.0, 50.0)),
-                        maximumSize: MaterialStateProperty.all<Size>(
-                            const Size(300.0, 60.0)),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "Add to cart",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+
+                    Consumer<help>(builder: (context, help, child) {
+                      return ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                          minimumSize: MaterialStateProperty.all<Size>(
+                              const Size(280.0, 50.0)),
+                          maximumSize: MaterialStateProperty.all<Size>(
+                              const Size(300.0, 60.0)),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          "Add to cart",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    })
+                    ,
                   ],
                 ),
               )
