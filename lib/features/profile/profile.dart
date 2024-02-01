@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
+import '../../Aboutus/aboutus.dart';
+
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -23,7 +25,6 @@ class _ProfileState extends State<Profile> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
         elevation: 0,
       ),
       body: Column(
@@ -86,7 +87,7 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Container(
                     width: 350,
-                    height: 76,
+                    height: 50,
                     color: Colors.white70,
                     child: Row(
                       children: [
@@ -96,20 +97,14 @@ class _ProfileState extends State<Profile> {
                               height: 10,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(2.0),
+                              padding: EdgeInsets.all(5.0),
                               child: Text(
                                 "orders",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text('my orders '),
-                            ),
+
                           ],
                         ),
                         const Spacer(),
@@ -120,11 +115,11 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Container(
                     width: 350,
-                    height: 76,
+                    height: 50,
                     color: Colors.white70,
                     child: Row(
                       children: [
@@ -141,16 +136,7 @@ class _ProfileState extends State<Profile> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(.5),
-                              child: Text(
-                                'Address',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
+
                           ],
                         ),
                         const Spacer(),
@@ -160,10 +146,10 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 15,),
                   Container(
                     width: 350,
-                    height: 76,
+                    height: 50,
                     color: Colors.white70,
                     child: Row(
                       children: [
@@ -180,16 +166,6 @@ class _ProfileState extends State<Profile> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(.5),
-                              child: Text(
-                                'Favorite',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
                           ],
                         ),
                         const Spacer(),
@@ -201,49 +177,12 @@ class _ProfileState extends State<Profile> {
                   ),
 
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
+
                   Container(
                     width: 350,
-                    height: 76,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Payment",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(.5),
-                              child: Text('cards'),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 350,
-                    height: 76,
+                    height: 50,
                     color: Colors.white70,
                     child: Row(
                       children: [
@@ -260,13 +199,6 @@ class _ProfileState extends State<Profile> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(.5),
-                              child: Text('ccomments'),
-                            ),
                           ],
                         ),
                         const Spacer(),
@@ -277,11 +209,11 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Container(
                     width: 350,
-                    height: 76,
+                    height: 50,
                     color: Colors.white70,
                     child: Row(
                       children: [
@@ -298,12 +230,34 @@ class _ProfileState extends State<Profile> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
+                          ],
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.arrow_forward_ios))
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Container(
+                    width: 350,
+                    height: 50,
+                    color: Colors.white70,
+                    child: Row(
+                      children: [
+                        const Column(
+                          children: [
                             SizedBox(
-                              height: 3,
+                              height: 10,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(.5),
-                              child: Text('password'),
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "Log out",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
                             ),
                           ],
                         ),
@@ -314,6 +268,43 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 15,),
+                  Container(
+                    width: 350,
+                    height: 50,
+                    color: Colors.white70,
+                    child: Row(
+                      children: [
+                        const Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Text(
+                                "About Us",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context)
+                              =>
+                                  aboutus()
+                              ));
+                            },
+                            icon: const Icon(Icons.arrow_forward_ios))
+                      ],
+                    ),
+                  ),
+
                 ],
               )
             ],
