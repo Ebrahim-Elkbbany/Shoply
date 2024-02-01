@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:provider/provider.dart';
+import 'package:shoply/features/signup-login/models/user_model.dart';
 
 import '../../Aboutus/aboutus.dart';
+import '../signup-login/models/signup_model.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class Profile extends StatelessWidget {
+  Profile({Key? key}) : super(key: key);
 
-  @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,38 +24,41 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AvatarGlow(
-                child: Material(
-                  // Replace this child with your own
-                  elevation: 8.0,
-                  shape: const CircleBorder(),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.grey[100],
-                    child: const CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(
-                          "https://tse1.mm.bing.net/th?id=OIP.VTBzGQySOYLDke_xg2OfEQHaFj&pid=Api&P=0&h=220"),
-                    ),
-                    radius: 50.50,
+      body: ChangeNotifierProvider(
+        create:(context)=> SignupModel(),
+        child:   Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            AvatarGlow(
+              child: Material(
+                // Replace this child with your own
+                elevation: 8.0,
+                shape: const CircleBorder(),
+                child: CircleAvatar(
+                  backgroundColor: Colors.grey[100],
+                  child: const CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(
+                        "https://tse1.mm.bing.net/th?id=OIP.VTBzGQySOYLDke_xg2OfEQHaFj&pid=Api&P=0&h=220"),
                   ),
+                  radius: 50.50,
                 ),
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              const Column(
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Consumer<UserModel>(builder: (context,values,child) {
+              return Column(
                 children: [
                   Text(
-                    "Mahmoud Sherif",
+                    values.userName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -69,247 +69,251 @@ class _ProfileState extends State<Profile> {
                     height: 10.0,
                   ),
                   Text(
-                    "Mahmoudsherif@gmail.com",
+                   values.email,
                     style: TextStyle(fontWeight: FontWeight.w300),
                   )
                 ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+              );
+            }
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              "orders",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                "orders",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
+                          ),
 
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Shopping",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Shopping",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
+                          ),
 
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  SizedBox(height: 15,),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Favorite",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Favorite",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
+                ),
 
-                  const SizedBox(
-                    height: 15,
-                  ),
+                const SizedBox(
+                  height: 15,
+                ),
 
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Reviews",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Reviews",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  const SizedBox(
-                    height: 15,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Setting",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Log out",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Setting",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  SizedBox(height: 15,),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "About Us",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "Log out",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context)
+                                =>
+                                    aboutus()
+                                ));
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
                   ),
-                  SizedBox(height: 15,),
-                  Container(
-                    width: 350,
-                    height: 50,
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text(
-                                "About Us",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context)
-                              =>
-                                  aboutus()
-                              ));
-                            },
-                            icon: const Icon(Icons.arrow_forward_ios))
-                      ],
-                    ),
-                  ),
+                ),
 
-                ],
-              )
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        )
+      ],
+    )
+
       ),
     );
   }
