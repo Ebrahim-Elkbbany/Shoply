@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 
 class ApiHelper {
   String url = 'https://fakestoreapi.com/';
-  Future<dynamic> get(
-      {required String endPoint,
-       String? token,
-      }) async {
+  Future<dynamic> get({
+    required String endPoint,
+    String? token,
+  }) async {
     http.Response response = await http.get(Uri.parse('$url$endPoint'));
     return jsonDecode(response.body);
   }

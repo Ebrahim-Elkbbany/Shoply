@@ -26,8 +26,8 @@ class CategoryRows extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) =>  ProductDetails(details: idx,)));
+                   /* Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) =>  ProductDetails(details: idx,)));*/
                   },
                   child: Container(
                       width: 580,

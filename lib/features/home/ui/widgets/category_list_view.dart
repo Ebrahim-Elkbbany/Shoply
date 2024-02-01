@@ -7,7 +7,7 @@ class CategoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       height: 100,
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),

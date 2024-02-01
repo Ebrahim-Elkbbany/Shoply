@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
-import 'package:shoply/features/signup-login/controllersProvider.dart';
-import 'package:shoply/features/signup-login/shared_customs/custom_button.dart';
-import 'package:shoply/features/signup-login/shared_customs/my_text_field.dart';
-import 'package:shoply/features/signup-login/shared_customs/password_textfield.dart';
+import 'package:shoply/features/category/view/ui/category.dart';
+import 'package:shoply/features/signup-login/models/signup_model.dart';
+import 'package:shoply/features/signup-login/shared_customs/confirm_password_formField.dart';
+import 'package:shoply/features/signup-login/shared_customs/custom_email_formField.dart';
+import 'package:shoply/features/signup-login/shared_customs/custom_name_formField.dart';
+import 'package:shoply/features/signup-login/shared_customs/password_formField.dart';
 import 'package:shoply/features/signup-login/view/ui/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -12,84 +14,116 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: ChangeNotifierProvider(
-        create: (context) => ControllerProvider(),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(26.0),
-                  child: Text(
-                    "Welcome",
-                    style: TextStyle(color: Colors.black87, fontSize: 33),
-                  ),
-                ),
-                Container(
-                  width: 400,
-                  height: 600,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(19),
-                  ),
-                  child: Consumer<ControllerProvider>(
-                    builder: (context, controllerProvider, child) {
-                      return Column(
-                        children: [
-                          MyTextField(
-                              keyboardType: TextInputType.text,
-                              nameController: controllerProvider.nameController,
-                              text: "Name"),
-                          MyTextField(
-                              keyboardType: TextInputType.emailAddress,
-                              nameController:
-                                  controllerProvider.emailController,
-                              text: "Email"),
-                          PasswordTextField(
-                              nameController:
-                                  controllerProvider.passwordController,
-                              keyboardType: TextInputType.text,
-                              text: "Password"),
-                          PasswordTextField(
-                              nameController:
-                                  controllerProvider.confirmPassController,
-                              keyboardType: TextInputType.text,
-                              text: "Confirm Password"),
-                          const SizedBox(
-                            height: 70,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: ChangeNotifierProvider(
+          create: (context) => SignupModel(),
+          child: SingleChildScrollView(
+            child: Consumer<SignupModel>(
+              builder: (context, signupModel, child) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Form(
+                    key: signupModel.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                      
+                        Padding(
+                          padding: const EdgeInsets.only(top: 26,bottom: 22,left: 16,right: 16),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Welcome",
+                                style: TextStyle(
+                                    color: Colors.black87, fontSize: 33),
+                              ),
+                              SizedBox(
+                                height: 80,width: 200,
+                                child: Image.asset(
+                                  'assets/images/signup.png',
+
+                                ),
+                              ),
+                            ],
                           ),
-                          CustomButton(button_text: "Login"),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Text("Already Have Account?"),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  LoginScreen()));
-                                    },
-                                    child: Text("SIGN UP"))
-                              ],
+                        ),
+                        Container(
+                            width: 400,
+                            height: 600,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(19),
                             ),
-                          )
-                        ],
-                      );
-                    },
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 70,
+                                ),
+                                NameFormField(
+                                    nameController: signupModel.nameController),
+                                EmailFormField(
+                                    emailController: signupModel.emailController),
+                                PasswordFormField(
+                                    passController:
+                                        signupModel.passwordController),
+                                ConfirmFormField(
+                                    confirmController:
+                                        signupModel.confirmPassController),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.grey[900]),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(17),
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    if (signupModel.formKey.currentState!
+                                        .validate()) {
+                                      await signupModel.signUpAndLogin();
+      
+                                      if (signupModel.isSignUpSuccessful) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => Category()));
+                                      }
+                                    }
+                                  },
+                                  child: Text(
+                                    "login",
+                                    style: TextStyle(color: Colors.white70),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Row(
+                                    children: [
+                                      Text("Already Have Account?"),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LoginScreen()));
+                                          },
+                                          child: Text("SIGN UP"))
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                );
+              },
             ),
           ),
         ),
