@@ -21,13 +21,11 @@ class ProductDetails extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () {},
         ),
       ),
       body: ChangeNotifierProvider(
-        create: (context) => help(),
+        create:(context) => help() ,
         child: SingleChildScrollView(
           child: Consumer<help>(
             builder: (context, count, child) {
@@ -37,8 +35,8 @@ class ProductDetails extends StatelessWidget {
                     width: 10,
                   ),
                   Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30)),
+                      decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
                       width: 415,
                       height: 380,
                       child: Image.network(details.image)),
@@ -48,21 +46,68 @@ class ProductDetails extends StatelessWidget {
                   Row(
                     children: [
                       const SizedBox(
-                        width: 1,
+                        width: 20,
                       ),
+                      Text(
+                        details.title,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                      ),
+                      const SizedBox(width: 100),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              details.title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                          ],
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: const Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundColor: Colors.black38,
+                                  ),
+                                  CircleAvatar(
+                                    radius: 10,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 1,
+                              ),
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundColor: Colors.black38,
+                                  ),
+                                  CircleAvatar(
+                                    radius: 10,
+                                    backgroundColor: Color(0xffEFAD5F),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 1,
+                              ),
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundColor: Colors.black38,
+                                  ),
+                                  CircleAvatar(
+                                    radius: 10,
+                                    backgroundColor: Color(0xffb97869),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -75,23 +120,12 @@ class ProductDetails extends StatelessWidget {
                       const SizedBox(
                         width: 25,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "\$",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black38),
-                          ),
-                          Text(
-                            details.price.toString(),
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black38),
-                          ),
-                        ],
+                      Text(
+                        details.price.toString(),
+                        style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black38),
                       ),
                       const Spacer(),
                       IconButton(
@@ -108,8 +142,7 @@ class ProductDetails extends StatelessWidget {
                       ),
                       Text(
                         count.count.toString(),
-                        style: const TextStyle(
-                            color: Colors.black38, fontSize: 30),
+                        style: const TextStyle(color: Colors.black38, fontSize: 30),
                       ),
                       const SizedBox(
                         width: 1,
@@ -137,17 +170,15 @@ class ProductDetails extends StatelessWidget {
                         size: 40,
                       ),
                       Text(
-                        details.rating.count.toString(),
-                        style: TextStyle(fontSize: 17),
+                        details.rating.toString(),
+                        style: TextStyle(fontSize: 20),
                       ),
+                      Text(details.rating.count.toString()),
                     ],
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      details.description,
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    child: Text(details.description),
                   ),
                   const SizedBox(
                     height: 20,
@@ -172,30 +203,26 @@ class ProductDetails extends StatelessWidget {
                         Consumer<help>(builder: (context, help, child) {
                           return ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.black),
+                              backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.black),
                               minimumSize: MaterialStateProperty.all<Size>(
                                   const Size(280.0, 50.0)),
                               maximumSize: MaterialStateProperty.all<Size>(
                                   const Size(300.0, 60.0)),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Cart(
-                                          image: image.text,
-                                          title: title.text,
-                                          price: price.text)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart())
+                              );
+
                             },
                             child: const Text(
                               "Add to cart",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                  color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           );
-                        }),
+                        })
+                        ,
                       ],
                     ),
                   )
