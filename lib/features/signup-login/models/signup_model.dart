@@ -48,6 +48,7 @@ class SignupModel extends ChangeNotifier {
       'password': passwordController.text,
     };
 
+
     try {
       final response = await ApiHelper().post(
         endPoint: EndPoints.signin,

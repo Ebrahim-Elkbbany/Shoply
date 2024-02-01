@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoply/core/utils/category_images.dart';
 import 'package:shoply/core/utils/colors.dart';
 
 class CategoryListView extends StatelessWidget {
@@ -24,7 +25,7 @@ class CategoryListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/electroncs.jpg'),
+                Image.asset(images[index],height: 50,width: 60,fit: BoxFit.cover),
                 const SizedBox(
                   height: 10,
                 ),
