@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/cart/logic/cart_provider.dart';
-
 import '../../layout/layout_view.dart';
 
 class Cart extends StatefulWidget {
@@ -35,8 +34,6 @@ class _CartState extends State<Cart> {
     5000,
     6000
   ];
-
-  int count = 0;
 
   double price = 0;
 
@@ -184,17 +181,17 @@ class _CartState extends State<Cart> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text('Total:', style: TextStyle(fontSize: 20),),
                       Consumer<CartProvider>(builder: (context, cartProvider,child) {
-                        return Text(cartProvider.calcTotal(price).toString(), style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),);
+                        return Text(cartProvider.calcTotal(price).toString(), style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),);
                       }),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Container(
                     width: 500, height: 50,
                     decoration: const BoxDecoration(
