@@ -73,30 +73,35 @@ class SignUpScreen extends StatelessWidget {
                                 ConfirmFormField(
                                     confirmController:
                                         signupModel.confirmPassController),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Colors.grey[900]),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(17),
+                                FractionallySizedBox(
+                                  widthFactor: 0.7,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.grey[900]),
+                                      shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(17),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  onPressed: () async {
-                                    if (signupModel.formKey.currentState!
-                                        .validate()) {
-                                      await signupModel.SignupUser();
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => Category()));
-                                      FocusScope.of(context).unfocus();
-                                    }
-                                  },
-                                  child: Text(
-                                    "login",
-                                    style: TextStyle(color: Colors.white70),
+                                    onPressed: () async {
+                                      if (signupModel.formKey.currentState!
+                                          .validate()) {
+                                        await signupModel.SignupUser();
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => Category()));
+                                        FocusScope.of(context).unfocus();
+                                      }
+                                    },
+                                    child: Text(
+                                      "SignUp ",
+                                      style: TextStyle(color: Colors.white70),
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -112,7 +117,12 @@ class SignUpScreen extends StatelessWidget {
                                                     builder: (context) =>
                                                         LoginScreen()));
                                           },
-                                          child: Text("SIGN UP"))
+                                          child: Text(
+                                            "Login",
+                                            style: TextStyle(
+                                              fontSize: 23,
+                                            ),
+                                          ))
                                     ],
                                   ),
                                 )
