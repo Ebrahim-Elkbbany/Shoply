@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/category/view/ui/category.dart';
-import 'package:shoply/features/signup-login/models/signup_model.dart';
+import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/confirm_password_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_email_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_name_formField.dart';
@@ -18,9 +18,9 @@ class SignUpScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         body: ChangeNotifierProvider(
-          create: (context) => SignupModel(),
+          create: (context) => UserProvider(),
           child: SingleChildScrollView(
-            child: Consumer<SignupModel>(
+            child: Consumer<UserProvider>(
               builder: (context, signupModel, child) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -30,9 +30,9 @@ class SignUpScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                      
                         Padding(
-                          padding: const EdgeInsets.only(top: 26,bottom: 22,left: 16,right: 16),
+                          padding: const EdgeInsets.only(
+                              top: 26, bottom: 22, left: 16, right: 16),
                           child: Row(
                             children: [
                               Text(
@@ -41,10 +41,10 @@ class SignUpScreen extends StatelessWidget {
                                     color: Colors.black87, fontSize: 33),
                               ),
                               SizedBox(
-                                height: 80,width: 200,
+                                height: 80,
+                                width: 200,
                                 child: Image.asset(
                                   'assets/images/signup.png',
-
                                 ),
                               ),
                             ],
@@ -65,7 +65,8 @@ class SignUpScreen extends StatelessWidget {
                                 NameFormField(
                                     nameController: signupModel.nameController),
                                 EmailFormField(
-                                    emailController: signupModel.emailController),
+                                    emailController:
+                                        signupModel.emailController),
                                 PasswordFormField(
                                     passController:
                                         signupModel.passwordController),
@@ -85,14 +86,12 @@ class SignUpScreen extends StatelessWidget {
                                   onPressed: () async {
                                     if (signupModel.formKey.currentState!
                                         .validate()) {
-                                      await signupModel.signUpAndLogin();
-      
-                                      if (signupModel.isSignUpSuccessful) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => Category()));
-                                      }
+                                      await signupModel.SignupUser();
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => Category()));
+                                      FocusScope.of(context).unfocus();
                                     }
                                   },
                                   child: Text(

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shoply/features/signup-login/models/signup_model.dart';
+import 'package:shoply/features/signup-login/models/userProvider.dart';
 
 class ConfirmFormField extends StatefulWidget {
   final TextEditingController confirmController;
 
-  ConfirmFormField({super.key, required this.confirmController});
+  ConfirmFormField({Key? key, required this.confirmController}) : super(key: key);
 
   @override
   State<ConfirmFormField> createState() => _ConfirmFormFieldState();
 }
 
 class _ConfirmFormFieldState extends State<ConfirmFormField> {
-  final SignupModel controllerProvider = SignupModel();
+  final UserProvider controllerProvider = UserProvider();
   bool isSelected = false;
   bool isSecured = true;
 
@@ -32,24 +32,25 @@ class _ConfirmFormFieldState extends State<ConfirmFormField> {
           decoration: InputDecoration(
             hintText: "Confirm Password",
             suffixIcon: InkWell(
-                onTap: () {
-                  setState(() {
-                    isSelected = !isSelected;
-                    isSecured = !isSecured;
-                  });
-                },
-                child: Icon(isSelected
-                    ? Icons.visibility_rounded
-                    : Icons.visibility_off_sharp)),
+              onTap: () {
+                setState(() {
+                  isSelected = !isSelected;
+                  isSecured = !isSecured;
+                });
+              },
+              child: Icon(isSelected
+                  ? Icons.visibility_rounded
+                  : Icons.visibility_off_sharp),
+            ),
           ),
           validator: (value) {
-            final originalPassword = SignupModel().passwordController.text;
+            final originalPassword = controllerProvider.passwordController.text;
 
             if (value == null || value.isEmpty) {
               return 'Please confirm your password';
-            } else if (value != originalPassword) {
+            }/* else if (value != originalPassword) {
               return 'Confirm password does not match';
-            }
+            }*/
             return null;
           },
         ),

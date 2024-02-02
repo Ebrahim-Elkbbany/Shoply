@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shoply/features/signup-login/models/signup_model.dart';
+import 'package:shoply/features/signup-login/models/userProvider.dart';
 
 class PasswordFormField extends StatefulWidget {
   final TextEditingController passController;
@@ -15,11 +15,7 @@ class PasswordFormField extends StatefulWidget {
 class _PasswordFormFieldState extends State<PasswordFormField> {
   bool isSelected = false;
   bool isSecured = true;
-  bool get isValidPassword {
-    final passwordRegExp =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#><*~]).{8,}$');
-    return passwordRegExp.hasMatch(SignupModel().passwordController.text);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +48,6 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter your password';
-            } else if (!isValidPassword) {
-              return 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
             }
             return null;
           },

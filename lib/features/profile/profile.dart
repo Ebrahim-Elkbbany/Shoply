@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:provider/provider.dart';
-import 'package:shoply/features/signup-login/models/user_model.dart';
+
 import '../../Aboutus/aboutus.dart';
-import '../signup-login/models/signup_model.dart';
+import '../signup-login/models/userProvider.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class Profile extends StatelessWidget {
         elevation: 0,
       ),
       body: ChangeNotifierProvider(
-        create:(context)=> SignupModel(),
+        create:(context)=> UserProvider(),
         child:   Column(
       children: [
         const SizedBox(
@@ -53,11 +53,11 @@ class Profile extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Consumer<UserModel>(builder: (context,values,child) {
+            Consumer<UserProvider>(builder: (context,values,child) {
               return Column(
                 children: [
                   Text(
-                    values.userName,
+                    values.nameController.text,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -68,7 +68,7 @@ class Profile extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                   values.email,
+                   values.emailController.text,
                     style: TextStyle(fontWeight: FontWeight.w300),
                   )
                 ],

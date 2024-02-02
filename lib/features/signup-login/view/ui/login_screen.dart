@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/category/view/ui/category.dart';
-import 'package:shoply/features/signup-login/models/signup_model.dart';
+import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/sign_email_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/sign_password_field.dart';
 
@@ -15,11 +15,11 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         body: ChangeNotifierProvider(
-          create: (context) => SignupModel(),
+          create: (context) => UserProvider(),
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Consumer<SignupModel>(
+              child: Consumer<UserProvider>(
                 builder: (context, signModel, child) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,14 +99,12 @@ class LoginScreen extends StatelessWidget {
                                   onPressed: () async {
                                     if (signModel.formKey.currentState!
                                         .validate()) {
-                                      await signModel
-                                          .login("eyJhbGciOiJIUzI1NiIsInR");
-                                      if (signModel.isSignUpSuccessful) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => Category()));
-                                      }
+                                      await signModel.LoginUser();
+
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => Category()));
                                     }
                                   },
                                   child: Text(
