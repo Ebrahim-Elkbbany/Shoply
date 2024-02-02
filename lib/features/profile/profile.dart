@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/features/signup-login/models/user_model.dart';
-
 import '../../Aboutus/aboutus.dart';
 import '../signup-login/models/signup_model.dart';
 

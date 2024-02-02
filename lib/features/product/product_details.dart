@@ -21,7 +21,8 @@ class ProductDetails extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
-          onPressed: () {},
+          onPressed: () {Navigator.pop(context);
+          },
         ),
       ),
       body: ChangeNotifierProvider(
@@ -50,66 +51,9 @@ class ProductDetails extends StatelessWidget {
                       ),
                       Text(
                         details.title,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                       ),
-                      const SizedBox(width: 100),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: const Row(
-                            children: [
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor: Colors.black38,
-                                  ),
-                                  CircleAvatar(
-                                    radius: 10,
-                                    backgroundColor: Colors.white,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 1,
-                              ),
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor: Colors.black38,
-                                  ),
-                                  CircleAvatar(
-                                    radius: 10,
-                                    backgroundColor: Color(0xffEFAD5F),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 1,
-                              ),
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor: Colors.black38,
-                                  ),
-                                  CircleAvatar(
-                                    radius: 10,
-                                    backgroundColor: Color(0xffb97869),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+
                     ],
                   ),
                   const SizedBox(
@@ -120,6 +64,7 @@ class ProductDetails extends StatelessWidget {
                       const SizedBox(
                         width: 25,
                       ),
+                      Text("\$" ,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black38),),
                       Text(
                         details.price.toString(),
                         style: TextStyle(
@@ -169,16 +114,13 @@ class ProductDetails extends StatelessWidget {
                         color: Colors.amber,
                         size: 40,
                       ),
-                      Text(
-                        details.rating.toString(),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(details.rating.count.toString()),
+
+                      Text(details.rating.count.toString(),style: TextStyle(color: Colors.black38,fontSize: 25),),
                     ],
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(details.description),
+                    child: Text(details.description,style: TextStyle(color: Colors.black54,fontSize: 15),),
                   ),
                   const SizedBox(
                     height: 20,
