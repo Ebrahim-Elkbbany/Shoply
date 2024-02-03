@@ -29,20 +29,20 @@ class UserProvider extends ChangeNotifier {
 
   Future SignupUser() async {
     Map<String, dynamic> signupMap = {
-      'firstname': fNamePassController.text,
-      'lastname': lNamePassController.text,
+      'firstname':fNamePassController.text,
+      'lastname':lNamePassController.text,
       'username': userNameController.text,
       'email': emailController.text,
       'password': passwordController.text,
       'confirmPassword': confirmPassController.text,
-      'Address geography lat': addGeoLatController.text,
-      'Address geography long': addGeoLongController.text,
-      'Address City': addCityController.text,
-      'Address Number': addNumberController.text,
-      'Address Street': addStreetController.text,
-      'Address zip code': addZipCodeController.text,
-      'phone': phoneController.text,
-      'v': vController.text,
+      'Address geography lat':addGeoLatController.text,
+      'Address geography long':addGeoLongController.text,
+      'Address City':addCityController.text,
+      'Address Number':addNumberController.text,
+      'Address Street':addStreetController.text,
+      'Address zip code':addZipCodeController.text,
+      'phone':phoneController.text,
+      'v':vController.text,
     };
     signupModel = await signupRepo.SignUp(signupMap);
     notifyListeners();
