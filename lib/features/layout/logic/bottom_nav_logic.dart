@@ -7,7 +7,7 @@ import '../../profile/profile.dart';
 
 class BottomNavLogic  extends ChangeNotifier{
   int currentIndex = 0;
-   List<Widget> bottomScreen = [const HomeView(),Category(),Cart(),Profile()];
+   List<Widget> bottomScreen = [const HomeView(),Category(),Cart(),ProfileView()];
 
   void changeBottomScreen(index) {
     currentIndex = index;

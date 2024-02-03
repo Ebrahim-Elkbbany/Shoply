@@ -19,14 +19,12 @@ class ProductDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xfff3f3f3),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-          onPressed: () {Navigator.pop(context);
-          },
-        ),
+        centerTitle: true,
+        title: Text(details.title),
+
       ),
       body: ChangeNotifierProvider(
-        create:(context) => help() ,
+        create: (context) => help(),
         child: SingleChildScrollView(
           child: Consumer<help>(
             builder: (context, count, child) {
@@ -36,24 +34,33 @@ class ProductDetails extends StatelessWidget {
                     width: 10,
                   ),
                   Container(
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                      width: 415,
-                      height: 380,
-                      child: Image.network(details.image)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30)),
+                     padding: EdgeInsets.all(20),
+                      height: 400,
+                      child: Image.network(
+                        details.image,fit: BoxFit.fill
+                      )),
                   const SizedBox(
-                    height: 1,
+                    height: 30,
                   ),
                   Row(
                     children: [
                       const SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        details.title,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      SizedBox(
+                        width: 350,
+                        child: Text(
+                          details.title,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
-
                     ],
                   ),
                   const SizedBox(
@@ -62,15 +69,22 @@ class ProductDetails extends StatelessWidget {
                   Row(
                     children: [
                       const SizedBox(
-                        width: 25,
+                        width: 20,
                       ),
-                      Text("\$" ,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black38),),
-                      Text(
-                        details.price.toString(),
+                      const Text(
+                        "\$",
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: Colors.black38),
+                      ),
+                      Text(
+                        details.price.toString(),
+                        style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black45,
+                        ),
                       ),
                       const Spacer(),
                       IconButton(
@@ -79,7 +93,7 @@ class ProductDetails extends StatelessWidget {
                           },
                           icon: const Icon(
                             Icons.add,
-                            color: Colors.black38,
+                            color: Colors.black45,
                             size: 40,
                           )),
                       const SizedBox(
@@ -87,7 +101,8 @@ class ProductDetails extends StatelessWidget {
                       ),
                       Text(
                         count.count.toString(),
-                        style: const TextStyle(color: Colors.black38, fontSize: 30),
+                        style: const TextStyle(
+                            color: Colors.black45, fontSize: 30),
                       ),
                       const SizedBox(
                         width: 1,
@@ -106,24 +121,34 @@ class ProductDetails extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.amber,
-                        size: 40,
+                        size: 35,
                       ),
-
-                      Text(details.rating.count.toString(),style: TextStyle(color: Colors.black38,fontSize: 25),),
+                      Text(
+                        details.rating.rate.toString(),
+                        style: const TextStyle(
+                          color: Colors.black45,
+                          fontSize: 25,
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(details.description,style: TextStyle(color: Colors.black54,fontSize: 15),),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8, horizontal: 20),
+                    child: Text(
+                      details.description,
+                      style:
+                          const TextStyle(color: Colors.black54, fontSize: 16,fontWeight: FontWeight.w500),
+                    ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -145,26 +170,27 @@ class ProductDetails extends StatelessWidget {
                         Consumer<help>(builder: (context, help, child) {
                           return ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.black),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.black),
                               minimumSize: MaterialStateProperty.all<Size>(
-                                  const Size(280.0, 50.0)),
+                                  const Size(280.0, 60.0)),
                               maximumSize: MaterialStateProperty.all<Size>(
                                   const Size(300.0, 60.0)),
                             ),
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart())
-                              );
-
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Cart()));
                             },
                             child: const Text(
                               "Add to cart",
                               style: TextStyle(
-                                  color: Colors.white, fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           );
-                        })
-                        ,
+                        }),
                       ],
                     ),
                   )

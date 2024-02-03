@@ -3,4 +3,5 @@ class EndPoints{
   static String category = 'products/categories';
   static String signup='users';
   static String signin='auth/login';
+  static String categoryProducts='products/category/';
 }
