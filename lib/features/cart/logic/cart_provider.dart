@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class CartProvider extends ChangeNotifier {
+class CartProviderr extends ChangeNotifier {
   int count = 1;
   late double prices;
   double total = 0;

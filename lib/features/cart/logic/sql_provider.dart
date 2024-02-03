@@ -17,11 +17,11 @@ class CartProvider {
   CartProvider._internal();
 
   Future open() async {
-    db = await openDatabase(join(await getDatabasesPath(), 'food.db'),
+    db = await openDatabase(join(await getDatabasesPath(), 'carts.db'),
         version: 1, onCreate: (Database db, int version) async {
           await db.execute('''
 create table $tableCart ( 
-  $columnId integer primary key autoincrement, 
+  $columnId integer not null, 
   $columnTitle text not null,
   $columnImage text not null,
   $columnPrice real not null)

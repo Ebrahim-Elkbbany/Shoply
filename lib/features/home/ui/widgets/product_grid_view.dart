@@ -3,6 +3,9 @@ import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/home/models/products_model.dart';
 import 'package:shoply/features/product/product_details.dart';
 
+import '../../../cart/logic/sql_cart.dart';
+import '../../../cart/logic/sql_provider.dart';
+
 class ProductGridView extends StatelessWidget {
   const ProductGridView({super.key, required this.products});
   final List<ProductModel> products;
@@ -39,7 +42,6 @@ class ProductGridView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Align(
                         alignment: Alignment.center,
                         child: Image.network(
@@ -73,13 +75,17 @@ class ProductGridView extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: 20,
                 right: 15,
-                child: Icon(
-                  Icons.favorite_border_outlined,
+                child: GestureDetector(
+                  onTap: (){
+                    CartProvider.instance.insert(SQLModel(image: products[index].image, price: products[index].price, title: products[index].title, id: products[index].id));
+                  },
+                  child: Icon(
+                    Icons.favorite_border_outlined,
+                  ),
                 ),
-
               ),
             ],
           ),
