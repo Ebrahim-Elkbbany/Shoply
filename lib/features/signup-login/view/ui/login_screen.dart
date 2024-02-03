@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
-import 'package:shoply/features/home/ui/home_view.dart';
+import 'package:shoply/features/layout/layout_view.dart';
 import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/sign_email_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/sign_password_field.dart';
@@ -104,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (_) => HomeView()));
+                                                builder: (_) => LayoutView()));
                                       }
                                     },
                                     child: Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
-import 'package:shoply/features/home/ui/home_view.dart';
+import 'package:shoply/features/layout/layout_view.dart';
 import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/confirm_password_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_email_formField.dart';
@@ -94,7 +94,8 @@ class SignUpScreen extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (_) => HomeView()));
+                                                builder: (_) => LayoutView()));
+
                                         FocusScope.of(context).unfocus();
                                       }
                                     },
@@ -108,7 +109,12 @@ class SignUpScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Row(
                                     children: [
-                                      Text("Already Have Account?",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                      Text(
+                                        "Already Have Account?",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                       TextButton(
                                           onPressed: () {
                                             Navigator.push(
