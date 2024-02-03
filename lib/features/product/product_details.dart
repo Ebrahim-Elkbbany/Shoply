@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../cart/logic/sql_cart.dart';
+import '../cart/logic/sql_provider.dart';
 import '../cart/ui/cart.dart';
 import '../home/models/products_model.dart';
 import 'logic_prov.dart';
@@ -36,10 +38,10 @@ class ProductDetails extends StatelessWidget {
                   Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30)),
-                     padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20),
                       height: 400,
                       child: Image.network(
-                        details.image,fit: BoxFit.fill
+                          details.image,fit: BoxFit.fill
                       )),
                   const SizedBox(
                     height: 30,
@@ -81,9 +83,9 @@ class ProductDetails extends StatelessWidget {
                       Text(
                         details.price.toString(),
                         style: const TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black45,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black45,
                         ),
                       ),
                       const Spacer(),
@@ -144,7 +146,7 @@ class ProductDetails extends StatelessWidget {
                     child: Text(
                       details.description,
                       style:
-                          const TextStyle(color: Colors.black54, fontSize: 16,fontWeight: FontWeight.w500),
+                      const TextStyle(color: Colors.black54, fontSize: 16,fontWeight: FontWeight.w500),
                     ),
                   ),
                   const SizedBox(
@@ -178,10 +180,7 @@ class ProductDetails extends StatelessWidget {
                                   const Size(300.0, 60.0)),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Cart()));
+                              CartProvider.instance.insert(SQLModel(image: details.image, price: details.price, title: details.title, id: details.id));
                             },
                             child: const Text(
                               "Add to cart",

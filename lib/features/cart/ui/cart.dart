@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/cart/logic/cart_provider.dart';
 import '../../layout/layout_view.dart';
+import '../logic/sql_cart.dart';
+import '../logic/sql_provider.dart';
 
 class Cart extends StatefulWidget {
 
@@ -14,33 +16,14 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
 
-  List<String> imageList = [
-    'https://m.media-amazon.com/images/I/81ADqF6FfFL._AC_UF350,350_QL80_.jpg',
-    'https://www.digsdigs.com/photos/2019/04/02-a-modern-farmhouse-bedroom-with-a-statement-neutral-colored-shiplap-wall-that-adds-coziness-and-helps-to-pull-off-the-style.jpg',
-    'https://www.dakotatimberco.com/cdn/shop/products/0I0A7001_1_2048x.jpg?v=1676310238',
-    'https://m.media-amazon.com/images/I/81ADqF6FfFL._AC_UF350,350_QL80_.jpg'
-  ];
-
-  List titles = [
-    'Alahy room',
-    'Liverpool room',
-    'Elgamal room',
-    'Alahy room',
-  ];
-
-  List<double> prices = [
-    2000,
-    2500,
-    5000,
-    6000
-  ];
-
   double price = 0;
+
+  List <SQLModel> products = [];
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => CartProvider(),
+      create: (BuildContext context) => CartProviderr(),
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -62,122 +45,176 @@ class _CartState extends State<Cart> {
                 children: [
                   SizedBox(
                     height: 500,
-                    child: ListView.builder(
-                        itemCount: imageList.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-
-                          price += prices[index];
-                          return Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                    child: FutureBuilder<List<SQLModel>>(
+                      future: CartProvider.instance.getAllCart(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          products = snapshot.data!;
+                          return ListView.builder(
+                              itemCount: products.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                return Column(
                                   children: [
-                                    const SizedBox(width: 20,),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.network(
-                                        imageList[index],
-                                        height: 116, width: 112,
-                                        fit: BoxFit.cover,
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(width: 20,),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                                10),
+                                            child: Image.network(
+                                              products.elementAt(index).image,
+                                              height: 116, width: 112,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 25,),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                child: Text(
+                                                  products.elementAt(index).title,
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight
+                                                          .normal,
+                                                      fontSize: 17
+                                                  ),
+                                                ),
+                                                width: 120,
+                                              ),
+                                              const SizedBox(height: 10,),
+                                              Text.rich(
+                                                  TextSpan(
+                                                      text: '\$',
+                                                      style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold
+                                                      ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text: ' ${products.elementAt(index).price}',
+                                                          style: const TextStyle(
+                                                              color: Colors.black,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontSize: 16
+                                                          ),
+                                                        )
+                                                      ]
+                                                  )
+
+                                              ),
+                                              const SizedBox(height: 25,),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        color: Colors.grey
+                                                    ),
+                                                    height: 40, width: 40,
+                                                    child: Consumer<
+                                                        CartProviderr>(
+                                                        builder: (context,
+                                                            cartProvider,
+                                                            child) {
+                                                          return IconButton(
+                                                            onPressed: () {
+                                                              cartProvider
+                                                                  .decrease();
+                                                            },
+                                                            icon: const Icon(
+                                                              Icons.remove,
+                                                              size: 20,),
+                                                          );
+                                                        }),
+
+                                                  ),
+                                                  const SizedBox(width: 10,),
+                                                  Consumer<CartProviderr>(
+                                                      builder: (context,
+                                                          cartProvider, child) {
+                                                        return Text(
+                                                            '${cartProvider
+                                                                .count}');
+                                                      }),
+                                                  const SizedBox(width: 10,),
+                                                  Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius
+                                                              .circular(10),
+                                                          color: Colors.grey
+                                                      ),
+                                                      height: 40, width: 40,
+                                                      child: Consumer<
+                                                          CartProviderr>(
+                                                          builder: (context,
+                                                              cartProvider,
+                                                              child) {
+                                                            return IconButton(
+                                                              onPressed: () {
+                                                                cartProvider
+                                                                    .increase();
+                                                              },
+                                                              icon: const Icon(
+                                                                Icons.add,
+                                                                size: 20,),
+                                                            );
+                                                          })
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(width: 60,),
+                                          IconButton(
+                                            onPressed: () {
+                                              CartProvider.instance.delete(products.elementAt(index).id);
+                                              setState(() {});
+                                            },
+                                            icon: const Icon(
+                                                Icons.close_outlined),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(width: 25,),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          titles[index],
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 17
-                                          ),
-                                        ),
-                                        const SizedBox(height: 4,),
-                                        Text(
-                                          '${prices[index]}',
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16
-                                          ),
-                                        ),
-                                        const SizedBox(height: 25,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  color: Colors.grey
-                                              ),
-                                              height: 40, width: 40,
-                                              child: Consumer<CartProvider>(builder: (context, cartProvider,child) {
-                                                return IconButton(
-                                                  onPressed: () {
-                                                    cartProvider.decrease();
-                                                  },
-                                                  icon: const Icon(Icons.remove, size: 20,),
-                                                );
-                                              }),
-
-                                            ),
-                                            const SizedBox(width: 10,),
-                                            Consumer<CartProvider>(builder: (context, cartProvider,child) {
-                                              return Text('${cartProvider.count}');
-                                            }),
-                                            const SizedBox(width: 10,),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  color: Colors.grey
-                                              ),
-                                              height: 40, width: 40,
-                                              child: Consumer<CartProvider>(builder: (context, cartProvider,child) {
-                                                return IconButton(
-                                                  onPressed: () {
-                                                    cartProvider.increase();
-                                                  },
-                                                  icon: const Icon(Icons.add, size: 20,),
-                                                );
-                                              })
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(width: 60,),
-                                    IconButton(
-                                      onPressed: () {
-                                        imageList.removeAt(index);
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: const Icon(Icons.close_outlined),
-                                    ),
+                                    const Divider(),
                                   ],
-                                ),
-                              ),
-                              const Divider(),
-                            ],
-                          );
-                        }),
+                                );
+                              });
+                        }
+                        if (snapshot.hasError) {
+                          print(snapshot.error.toString());
+                        }
+                        return const Center(
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   TextField(
                     decoration: InputDecoration(
-                        labelText: 'Enter your promo code',
+                      labelText: 'Enter your promo code',
                       filled: true,
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: Colors.white
-                        )
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                              color: Colors.white
+                          )
                       ),
                     ),
                   ),
@@ -186,8 +223,8 @@ class _CartState extends State<Cart> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text('Total:', style: TextStyle(fontSize: 20),),
-                      Consumer<CartProvider>(builder: (context, cartProvider,child) {
-                        return Text(cartProvider.calcTotal(price).toString(), style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),);
+                      Consumer<CartProviderr>(builder: (context, cartProvider,child) {
+                        return Text('\$ 204.23', style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),);
                       }),
                     ],
                   ),
