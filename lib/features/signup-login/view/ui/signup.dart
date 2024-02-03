@@ -100,12 +100,12 @@ class SignUpScreen extends StatelessWidget {
                                         CustomFormField(
                                             controller:
                                                 signupModel.addGeoLatController,
-                                            hintText: "Address geography lat",
+                                            hintText: " geography lat",
                                             keyboardType: TextInputType.text),
                                         CustomFormField(
                                             controller: signupModel
                                                 .addGeoLongController,
-                                            hintText: "Address geography long",
+                                            hintText: " geography long",
                                             keyboardType: TextInputType.text),
                                       ],
                                     ),
@@ -114,12 +114,12 @@ class SignUpScreen extends StatelessWidget {
                                         CustomFormField(
                                             controller:
                                                 signupModel.addCityController,
-                                            hintText: "Address City",
+                                            hintText: " City",
                                             keyboardType: TextInputType.text),
                                         CustomFormField(
                                             controller:
                                                 signupModel.addStreetController,
-                                            hintText: 'Address street',
+                                            hintText: ' street',
                                             keyboardType: TextInputType.text),
                                       ],
                                     ),
@@ -128,12 +128,12 @@ class SignUpScreen extends StatelessWidget {
                                         CustomFormField(
                                             controller:
                                                 signupModel.addNumberController,
-                                            hintText: "Address Number",
+                                            hintText: " Number",
                                             keyboardType: TextInputType.text),
                                         CustomFormField(
                                             controller: signupModel
                                                 .addZipCodeController,
-                                            hintText: "Address Zip Code",
+                                            hintText: " Zip Code",
                                             keyboardType: TextInputType.number),
                                       ],
                                     ),
@@ -146,7 +146,7 @@ class SignUpScreen extends StatelessWidget {
                                             keyboardType: TextInputType.number),
                                         CustomFormField(
                                             controller: signupModel.vController,
-                                            hintText: "__v",
+                                            hintText: "v:",
                                             keyboardType: TextInputType.number),
                                       ],
                                     )
