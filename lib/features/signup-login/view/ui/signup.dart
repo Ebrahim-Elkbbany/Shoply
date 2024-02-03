@@ -17,202 +17,204 @@ class SignUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: ChangeNotifierProvider(
-          create: (context) => UserProvider(),
-          child: Consumer<UserProvider>(
-            builder: (context, signupModel, child) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                    top: 22, left: 16, bottom: 16, right: 16),
-                child: Form(
-                  key: signupModel.formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          height: 80,
-                          width: 200,
-                          child: Image.asset(
-                            'assets/images/signup.png',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Welcome ..",
-                          style: TextStyle(
-                              color: Colors.black38,
-                              fontSize: 33,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        width: 400,
-                        height: 450,
-                        child: ListView(
-                          children: [
-                            Container(
-                              width: 400,
-                              height: 900,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(19),
-                              ),
-                              child: Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 70,
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.fNamePassController,
-                                          hintText: "First Name",
-                                          keyboardType: TextInputType.name),
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.lNamePassController,
-                                          hintText: "Last Name",
-                                          keyboardType: TextInputType.name),
-                                    ],
-                                  ),
-                                  CustomFormField(
-                                      controller: signupModel.userNameController,
-                                      hintText: "user name",
-                                      keyboardType: TextInputType.text),
-                                  EmailFormField(
-                                      emailController:
-                                          signupModel.emailController),
-                                  PasswordFormField(
-                                      passController:
-                                          signupModel.passwordController),
-                                  ConfirmFormField(
-                                      confirmController:
-                                          signupModel.confirmPassController),
-                                  Row(
-                                    children: [
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addGeoLatController,
-                                          hintText: "Address geography lat",
-                                          keyboardType: TextInputType.text),
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addGeoLongController,
-                                          hintText: "Address geography long",
-                                          keyboardType: TextInputType.text),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addCityController,
-                                          hintText: "Address City",
-                                          keyboardType: TextInputType.text),
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addStreetController,
-                                          hintText: 'Address street',
-                                          keyboardType: TextInputType.text),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addNumberController,
-                                          hintText: "Address Number",
-                                          keyboardType: TextInputType.text),
-                                      CustomFormField(
-                                          controller:
-                                              signupModel.addZipCodeController,
-                                          hintText: "Address Zip Code",
-                                          keyboardType: TextInputType.number),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomFormField(
-                                          controller: signupModel.phoneController,
-                                          hintText: "phone ",
-                                          keyboardType: TextInputType.number),
-                                      CustomFormField(
-                                          controller: signupModel.vController,
-                                          hintText: "__v",
-                                          keyboardType: TextInputType.number),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.7,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.grey[900]),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(17),
-                              ),
+        body: SingleChildScrollView(
+          child: ChangeNotifierProvider(
+            create: (context) => UserProvider(),
+            child: Consumer<UserProvider>(
+              builder: (context, signupModel, child) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                      top: 22, left: 16, bottom: 16, right: 16),
+                  child: Form(
+                    key: signupModel.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            height: 80,
+                            width: 200,
+                            child: Image.asset(
+                              'assets/images/signup.png',
                             ),
                           ),
-                          onPressed: () async {
-                            if (signupModel.formKey.currentState!.validate()) {
-                              await signupModel.SignupUser();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => LayoutView()));
-
-                              FocusScope.of(context).unfocus();
-                            }
-                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            "SignUp ",
-                            style: TextStyle(color: Colors.white70),
+                            "Welcome ..",
+                            style: TextStyle(
+                                color: Colors.black38,
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Already Have Account?",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()));
-                                },
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ))
-                          ],
+                        Container(
+                          width: 400,
+                          height: 450,
+                          child: ListView(
+                            children: [
+                              Container(
+                                width: 400,
+                                height: 900,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(19),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 70,
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.fNamePassController,
+                                            hintText: "First Name",
+                                            keyboardType: TextInputType.name),
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.lNamePassController,
+                                            hintText: "Last Name",
+                                            keyboardType: TextInputType.name),
+                                      ],
+                                    ),
+                                    CustomFormField(
+                                        controller: signupModel.userNameController,
+                                        hintText: "user name",
+                                        keyboardType: TextInputType.text),
+                                    EmailFormField(
+                                        emailController:
+                                            signupModel.emailController),
+                                    PasswordFormField(
+                                        passController:
+                                            signupModel.passwordController),
+                                    ConfirmFormField(
+                                        confirmController:
+                                            signupModel.confirmPassController),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addGeoLatController,
+                                            hintText: "Address geography lat",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addGeoLongController,
+                                            hintText: "Address geography long",
+                                            keyboardType: TextInputType.text),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addCityController,
+                                            hintText: "Address City",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addStreetController,
+                                            hintText: 'Address street',
+                                            keyboardType: TextInputType.text),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addNumberController,
+                                            hintText: "Address Number",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addZipCodeController,
+                                            hintText: "Address Zip Code",
+                                            keyboardType: TextInputType.number),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller: signupModel.phoneController,
+                                            hintText: "phone ",
+                                            keyboardType: TextInputType.number),
+                                        CustomFormField(
+                                            controller: signupModel.vController,
+                                            hintText: "__v",
+                                            keyboardType: TextInputType.number),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )
-                    ],
+                        FractionallySizedBox(
+                          widthFactor: 0.7,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.grey[900]),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(17),
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (signupModel.formKey.currentState!.validate()) {
+                                await signupModel.SignupUser();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => LayoutView()));
+          
+                                FocusScope.of(context).unfocus();
+                              }
+                            },
+                            child: Text(
+                              "SignUp ",
+                              style: TextStyle(color: Colors.white70),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Already Have Account?",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500),
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => LoginScreen()));
+                                  },
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
