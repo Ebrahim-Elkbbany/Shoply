@@ -51,13 +51,13 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          width: 450,
-                          height: 500,
+                          width: 400,
+                          height: 450,
                           child: ListView(
                             children: [
                               Container(
                                 width: 400,
-                                height: 850,
+                                height: 900,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(19),
