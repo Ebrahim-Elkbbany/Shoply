@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
                             height: 80,
                             width: 200,
                             child: Image.asset(
-                              'assets/images/signup.png',
+                              'assets/images/logo login.png',
                             ),
                           ),
                         ),
@@ -174,14 +174,14 @@ class SignUpScreen extends StatelessWidget {
                                 onPressed: () async {
                                   if (signupModel.formKey.currentState!
                                       .validate()) {
-                                    await signupModel.SignupUser();
+                                    //await signupModel.SignupUser();
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (_) => LayoutView()));
-
                                     FocusScope.of(context).unfocus();
                                   }
+
                                 },
                                 child: Text(
                                   "SignUp ",

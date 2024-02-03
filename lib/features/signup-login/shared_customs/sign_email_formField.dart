@@ -19,7 +19,10 @@ class SignEmailField extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(hintText: "Email"),
           validator: (value) {
-
+            if (value == null || value.isEmpty) {
+              return 'Please enter your password';
+            }
+            return null;
           },
         ),
       ),

@@ -19,7 +19,10 @@ class SignPasswordField extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(hintText: "Password"),
           validator: (value) {
-
+            if (value == null || value.isEmpty) {
+              return 'Please enter your password';
+            }
+            return null;
           },
         ),
       ),

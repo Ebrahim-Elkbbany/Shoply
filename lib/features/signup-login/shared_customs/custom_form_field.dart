@@ -30,7 +30,7 @@ class CustomFormField extends StatelessWidget {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your name';
+              return 'Invalid data';
             }
             return null;
           },
