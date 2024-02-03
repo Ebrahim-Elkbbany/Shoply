@@ -176,8 +176,10 @@ class SignUpScreen extends StatelessWidget {
                                   if (signupModel.formKey.currentState!
                                       .validate()) {
                                     await signupModel.SignupUser();
-                                    SharedPreferences prefs = await SharedPreferences.getInstance();
-                                    prefs.setString('email', 'useremail@gmail.com');
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString(
+                                        'email', 'useremail@gmail.com');
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
