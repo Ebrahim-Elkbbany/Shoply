@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:provider/provider.dart';
+import 'package:shoply/features/favourite_products/favourite_products.dart';
 
 import '../../Aboutus/aboutus.dart';
 import '../signup-login/models/userProvider.dart';
@@ -148,7 +149,9 @@ class ProfileView extends StatelessWidget {
                             ),
                             const Spacer(),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FavouriteProducts()));
+                                },
                                 icon: const Icon(Icons.arrow_forward_ios))
                           ],
                         ),
