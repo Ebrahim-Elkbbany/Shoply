@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoply/core/utils/colors.dart';
 import 'package:shoply/features/layout/layout_view.dart';
 import 'package:shoply/features/signup-login/models/userProvider.dart';
@@ -163,8 +164,8 @@ class SignUpScreen extends StatelessWidget {
                               widthFactor: 0.7,
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.grey[900]),
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.grey[900]),
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(17),
@@ -175,6 +176,10 @@ class SignUpScreen extends StatelessWidget {
                                   if (signupModel.formKey.currentState!
                                       .validate()) {
                                     await signupModel.SignupUser();
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString(
+                                        'email', 'useremail@gmail.com');
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
