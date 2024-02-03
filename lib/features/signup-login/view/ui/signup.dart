@@ -156,33 +156,38 @@ class SignUpScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        FractionallySizedBox(
-                          widthFactor: 0.7,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.grey[900]),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(17),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(
+                            child: FractionallySizedBox(
+                              widthFactor: 0.7,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.grey[900]),
+                                  shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(17),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  if (signupModel.formKey.currentState!
+                                      .validate()) {
+                                    await signupModel.SignupUser();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => LayoutView()));
+
+                                    FocusScope.of(context).unfocus();
+                                  }
+                                },
+                                child: Text(
+                                  "SignUp ",
+                                  style: TextStyle(color: Colors.white70),
                                 ),
                               ),
-                            ),
-                            onPressed: () async {
-                              if (signupModel.formKey.currentState!
-                                  .validate()) {
-                                await signupModel.SignupUser();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => LayoutView()));
-
-                                FocusScope.of(context).unfocus();
-                              }
-                            },
-                            child: Text(
-                              "SignUp ",
-                              style: TextStyle(color: Colors.white70),
                             ),
                           ),
                         ),
