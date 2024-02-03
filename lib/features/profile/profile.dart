@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import '../../Aboutus/aboutus.dart';
 import '../signup-login/models/userProvider.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
+class Profile extends StatelessWidget {
+  Profile({Key? key}) : super(key: key);
 
 
   @override
@@ -15,10 +15,10 @@ class ProfileView extends StatelessWidget {
       backgroundColor: const Color(0xfff3f3f3),
       appBar: AppBar(
         backgroundColor: const Color(0xfff3f3f3),
-
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
         title: const Text(
           "Profile",
-          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         elevation: 0,
@@ -41,12 +41,12 @@ class ProfileView extends StatelessWidget {
                 shape: const CircleBorder(),
                 child: CircleAvatar(
                   backgroundColor: Colors.grey[100],
-                  radius: 50.50,
                   child: const CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(
                         "https://tse1.mm.bing.net/th?id=OIP.VTBzGQySOYLDke_xg2OfEQHaFj&pid=Api&P=0&h=220"),
                   ),
+                  radius: 50.50,
                 ),
               ),
             ),
@@ -56,20 +56,30 @@ class ProfileView extends StatelessWidget {
             Consumer<UserProvider>(builder: (context,values,child) {
               return Column(
                 children: [
-                  Text(
-                    values.nameController.text,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        values.fNamePassController.text,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ), Text(
+                        values.lNamePassController.text,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 10.0,
                     height: 10.0,
                   ),
                   Text(
                    values.emailController.text,
-                    style: const TextStyle(fontWeight: FontWeight.w300),
+                    style: TextStyle(fontWeight: FontWeight.w300),
                   )
                 ],
               );
@@ -88,17 +98,25 @@ class ProfileView extends StatelessWidget {
               children: [
                 Container(
                   width: 350,
-                  height: 60,
+                  height: 50,
                   color: Colors.white70,
                   child: Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Orders",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              "orders",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ),
+
+                        ],
                       ),
                       const Spacer(),
                       IconButton(
@@ -185,7 +203,7 @@ class ProfileView extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.all(2.0),
                             child: Text(
                               "Reviews",
                               style: TextStyle(
@@ -216,7 +234,7 @@ class ProfileView extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.all(2.0),
                             child: Text(
                               "Setting",
                               style: TextStyle(
@@ -232,7 +250,7 @@ class ProfileView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15,),
+                SizedBox(height: 15,),
                 Container(
                   width: 350,
                   height: 50,
@@ -245,7 +263,36 @@ class ProfileView extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Log out",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios))
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.white70,
+                  child: Row(
+                    children: [
+                      const Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(2.0),
                             child: Text(
                               "About Us",
                               style: TextStyle(
@@ -261,38 +308,9 @@ class ProfileView extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(builder: (context)
                                 =>
-                                const aboutus()
+                                    aboutus()
                                 ));
                           },
-                          icon: const Icon(Icons.arrow_forward_ios))
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 15,),
-                Container(
-                  width: 350,
-                  height: 50,
-                  color: Colors.white70,
-                  child: Row(
-                    children: [
-                      const Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Text(
-                              "Log out",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () {},
                           icon: const Icon(Icons.arrow_forward_ios))
                     ],
                   ),
