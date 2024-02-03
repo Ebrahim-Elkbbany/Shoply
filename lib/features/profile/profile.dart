@@ -56,12 +56,22 @@ class Profile extends StatelessWidget {
             Consumer<UserProvider>(builder: (context,values,child) {
               return Column(
                 children: [
-                  Text(
-                    values.nameController.text,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        values.fNamePassController.text,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ), Text(
+                        values.lNamePassController.text,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     width: 10.0,
