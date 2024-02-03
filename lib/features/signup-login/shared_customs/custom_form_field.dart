@@ -15,7 +15,7 @@ class CustomFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 300,
+        width: 150,
         height: 70,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
