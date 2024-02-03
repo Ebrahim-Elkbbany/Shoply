@@ -10,19 +10,39 @@ class UserProvider extends ChangeNotifier {
   SignupModel signupModel = SignupModel();
   List users = [];
   final formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   TextEditingController signEmailController = TextEditingController();
   TextEditingController signPassController = TextEditingController();
+  TextEditingController addCityController = TextEditingController();
+  TextEditingController fNamePassController = TextEditingController();
+  TextEditingController lNamePassController = TextEditingController();
+  TextEditingController addGeoLatController = TextEditingController();
+  TextEditingController addGeoLongController = TextEditingController();
+  TextEditingController addStreetController = TextEditingController();
+  TextEditingController addNumberController = TextEditingController();
+  TextEditingController addZipCodeController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController vController = TextEditingController();
 
   Future SignupUser() async {
     Map<String, dynamic> signupMap = {
-      'username': nameController.text,
+      'firstname': fNamePassController.text,
+      'lastname': lNamePassController.text,
+      'username': userNameController.text,
       'email': emailController.text,
       'password': passwordController.text,
       'confirmPassword': confirmPassController.text,
+      'Address geography lat': addGeoLatController.text,
+      'Address geography long': addGeoLongController.text,
+      'Address City': addCityController.text,
+      'Address Number': addNumberController.text,
+      'Address Street': addStreetController.text,
+      'Address zip code': addZipCodeController.text,
+      'phone': phoneController.text,
+      'v': vController.text,
     };
     signupModel = await signupRepo.SignUp(signupMap);
     notifyListeners();
@@ -39,10 +59,21 @@ class UserProvider extends ChangeNotifier {
 
   @override
   void dispose() {
-    nameController.dispose();
+    fNamePassController.dispose();
+    lNamePassController.dispose();
+    userNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPassController.dispose();
+    addCityController.dispose();
+    addGeoLatController.dispose();
+    addStreetController.dispose();
+    addGeoLongController.dispose();
+    addNumberController.dispose();
+    addZipCodeController.dispose();
+    phoneController.dispose();
+    vController.dispose();
+
     super.dispose();
   }
 }
