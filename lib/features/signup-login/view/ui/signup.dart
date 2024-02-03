@@ -70,20 +70,22 @@ class SignUpScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         CustomFormField(
-                                            controller: signupModel.fNamePassController,
+                                            controller:
+                                                signupModel.fNamePassController,
                                             hintText: "First Name",
                                             keyboardType: TextInputType.name),
                                         CustomFormField(
-                                            controller: signupModel.lNamePassController,
+                                            controller:
+                                                signupModel.lNamePassController,
                                             hintText: "Last Name",
                                             keyboardType: TextInputType.name),
                                       ],
                                     ),
                                     CustomFormField(
-                                        controller: signupModel.userNameController,
+                                        controller:
+                                            signupModel.userNameController,
                                         hintText: "user name",
                                         keyboardType: TextInputType.text),
-          
                                     EmailFormField(
                                         emailController:
                                             signupModel.emailController),
@@ -93,57 +95,61 @@ class SignUpScreen extends StatelessWidget {
                                     ConfirmFormField(
                                         confirmController:
                                             signupModel.confirmPassController),
-                                   Row(
-                                     children: [
-                                       CustomFormField(
-                                           controller: signupModel.addGeoLatController,
-                                           hintText: "Address geography lat",
-                                           keyboardType: TextInputType.text),
-                                       CustomFormField(
-                                           controller:
-                                           signupModel.addGeoLongController,
-                                           hintText: "Address geography long",
-                                           keyboardType: TextInputType.text),
-                                     ],
-                                   ),
-                                   Row(
-                                     children: [
-                                       CustomFormField(
-                                           controller: signupModel.addCityController,
-                                           hintText: "Address City",
-                                           keyboardType: TextInputType.text),
-                                       CustomFormField(
-                                           controller: signupModel.addStreetController,
-                                           hintText: 'Address street',
-                                           keyboardType: TextInputType.text),
-                                     ],
-                                   ),
-                                   Row(
-                                     children: [
-                                       CustomFormField(
-                                           controller: signupModel.addNumberController,
-                                           hintText: "Address Number",
-                                           keyboardType: TextInputType.text),
-                                       CustomFormField(
-                                           controller:
-                                           signupModel.addZipCodeController,
-                                           hintText: "Address Zip Code",
-                                           keyboardType: TextInputType.number),
-                                     ],
-                                   ),
-                                   Row(
-                                     children: [
-                                       CustomFormField(
-                                           controller: signupModel.phoneController,
-                                           hintText: "phone ",
-                                           keyboardType: TextInputType.number),
-                                       CustomFormField(
-                                           controller: signupModel.vController,
-                                           hintText: "__v",
-                                           keyboardType: TextInputType.number),
-                                     ],
-                                   )
-          
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addGeoLatController,
+                                            hintText: "Address geography lat",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller: signupModel
+                                                .addGeoLongController,
+                                            hintText: "Address geography long",
+                                            keyboardType: TextInputType.text),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addCityController,
+                                            hintText: "Address City",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addStreetController,
+                                            hintText: 'Address street',
+                                            keyboardType: TextInputType.text),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.addNumberController,
+                                            hintText: "Address Number",
+                                            keyboardType: TextInputType.text),
+                                        CustomFormField(
+                                            controller: signupModel
+                                                .addZipCodeController,
+                                            hintText: "Address Zip Code",
+                                            keyboardType: TextInputType.number),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        CustomFormField(
+                                            controller:
+                                                signupModel.phoneController,
+                                            hintText: "phone ",
+                                            keyboardType: TextInputType.number),
+                                        CustomFormField(
+                                            controller: signupModel.vController,
+                                            hintText: "__v",
+                                            keyboardType: TextInputType.number),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),
@@ -163,13 +169,14 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () async {
-                              if (signupModel.formKey.currentState!.validate()) {
+                              if (signupModel.formKey.currentState!
+                                  .validate()) {
                                 await signupModel.SignupUser();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => LayoutView()));
-          
+
                                 FocusScope.of(context).unfocus();
                               }
                             },
@@ -193,7 +200,8 @@ class SignUpScreen extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => LoginScreen()));
+                                            builder: (context) =>
+                                                LoginScreen()));
                                   },
                                   child: Text(
                                     "Login",
