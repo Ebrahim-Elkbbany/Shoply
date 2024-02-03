@@ -82,7 +82,8 @@ class SignUpScreen extends StatelessWidget {
                                       ],
                                     ),
                                     CustomFormField(
-                                        controller: signupModel.userNameController,
+                                        controller:
+                                            signupModel.userNameController,
                                         hintText: "user name",
                                         keyboardType: TextInputType.text),
                                     EmailFormField(
@@ -102,8 +103,8 @@ class SignUpScreen extends StatelessWidget {
                                             hintText: "Address geography lat",
                                             keyboardType: TextInputType.text),
                                         CustomFormField(
-                                            controller:
-                                                signupModel.addGeoLongController,
+                                            controller: signupModel
+                                                .addGeoLongController,
                                             hintText: "Address geography long",
                                             keyboardType: TextInputType.text),
                                       ],
@@ -130,8 +131,8 @@ class SignUpScreen extends StatelessWidget {
                                             hintText: "Address Number",
                                             keyboardType: TextInputType.text),
                                         CustomFormField(
-                                            controller:
-                                                signupModel.addZipCodeController,
+                                            controller: signupModel
+                                                .addZipCodeController,
                                             hintText: "Address Zip Code",
                                             keyboardType: TextInputType.number),
                                       ],
@@ -139,7 +140,8 @@ class SignUpScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         CustomFormField(
-                                            controller: signupModel.phoneController,
+                                            controller:
+                                                signupModel.phoneController,
                                             hintText: "phone ",
                                             keyboardType: TextInputType.number),
                                         CustomFormField(
@@ -167,13 +169,14 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () async {
-                              if (signupModel.formKey.currentState!.validate()) {
+                              if (signupModel.formKey.currentState!
+                                  .validate()) {
                                 await signupModel.SignupUser();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => LayoutView()));
-          
+
                                 FocusScope.of(context).unfocus();
                               }
                             },
@@ -197,7 +200,8 @@ class SignUpScreen extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => LoginScreen()));
+                                            builder: (context) =>
+                                                LoginScreen()));
                                   },
                                   child: Text(
                                     "Login",
