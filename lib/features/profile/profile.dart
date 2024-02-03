@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../Aboutus/aboutus.dart';
 import '../signup-login/models/userProvider.dart';
+import '../signup-login/view/ui/login_screen.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class ProfileView extends StatelessWidget {
                     return Column(
                       children: [
                         Text(
-                          values.nameController.text,
+                          values.fNamePassController.text,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -249,7 +250,11 @@ class ProfileView extends StatelessWidget {
                             ),
                             const Spacer(),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            LoginScreen()));},
                                 icon: const Icon(Icons.arrow_forward_ios))
                           ],
                         ),
