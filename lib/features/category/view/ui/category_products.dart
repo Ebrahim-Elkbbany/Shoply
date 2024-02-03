@@ -13,7 +13,10 @@ class CategoryProducts extends StatelessWidget {
     return  ChangeNotifierProvider(
    create: (context) =>  HomeServiceProvider()..getCategoryProducts(categoryName: categoryName),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(categoryName,style: TextStyle(fontWeight: FontWeight.bold),),
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           physics: const BouncingScrollPhysics(),

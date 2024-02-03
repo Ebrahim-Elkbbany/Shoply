@@ -27,6 +27,8 @@ class UserProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
   TextEditingController vController = TextEditingController();
 
+
+
   Future SignupUser() async {
     Map<String, dynamic> signupMap = {
       'firstname': fNamePassController.text,
