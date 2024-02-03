@@ -6,7 +6,6 @@ import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/confirm_password_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_email_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_form_field.dart';
-import 'package:shoply/features/signup-login/shared_customs/custom_name_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/password_formField.dart';
 import 'package:shoply/features/signup-login/view/ui/login_screen.dart';
 
