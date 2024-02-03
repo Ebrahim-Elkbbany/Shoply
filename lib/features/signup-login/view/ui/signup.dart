@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoply/core/utils/colors.dart';
-import 'package:shoply/features/category/view/ui/category.dart';
+import 'package:shoply/features/home/ui/home_view.dart';
 import 'package:shoply/features/signup-login/models/userProvider.dart';
 import 'package:shoply/features/signup-login/shared_customs/confirm_password_formField.dart';
 import 'package:shoply/features/signup-login/shared_customs/custom_email_formField.dart';
@@ -23,31 +23,31 @@ class SignUpScreen extends StatelessWidget {
             child: Consumer<UserProvider>(
               builder: (context, signupModel, child) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(
+                      top: 22, left: 16, bottom: 16, right: 16),
                   child: Form(
                     key: signupModel.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        Center(
+                          child: SizedBox(
+                            height: 80,
+                            width: 200,
+                            child: Image.asset(
+                              'assets/images/signup.png',
+                            ),
+                          ),
+                        ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 26, bottom: 22, left: 16, right: 16),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Welcome",
-                                style: TextStyle(
-                                    color: Colors.black87, fontSize: 33),
-                              ),
-                              SizedBox(
-                                height: 80,
-                                width: 200,
-                                child: Image.asset(
-                                  'assets/images/signup.png',
-                                ),
-                              ),
-                            ],
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Welcome ..",
+                            style: TextStyle(
+                                color: Colors.black38,
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
@@ -94,7 +94,7 @@ class SignUpScreen extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (_) => Category()));
+                                                builder: (_) => HomeView()));
                                         FocusScope.of(context).unfocus();
                                       }
                                     },
@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Row(
                                     children: [
-                                      Text("Already Have Account?"),
+                                      Text("Already Have Account?",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
                                       TextButton(
                                           onPressed: () {
                                             Navigator.push(
@@ -121,6 +121,7 @@ class SignUpScreen extends StatelessWidget {
                                             "Login",
                                             style: TextStyle(
                                               fontSize: 23,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ))
                                     ],
