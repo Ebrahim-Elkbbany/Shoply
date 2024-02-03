@@ -1,6 +1,6 @@
 List<String> images = [
-  "assets/images/electronic devices.png",
-  "assets/images/necklace.png",
-  "assets/images/men clothes.png",
-  "assets/images/woman clothes.jpg"
+  "assets/images/electronics.jpeg",
+  "assets/images/jewellery.png",
+  "assets/images/man clothing.png",
+  "assets/images/woman clothing.jpg"
 ];

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shoply/core/utils/colors.dart';
-import 'package:shoply/features/product/product_details.dart';
+import 'package:shoply/features/category/view/ui/category_products.dart';
+import 'package:shoply/features/home/logic/home_products.dart';
+import 'package:shoply/features/home/models/products_model.dart';
 
 class CategoryRows extends StatelessWidget {
-  CategoryRows({Key? key, required this.categoryList}) : super(key: key);
+  CategoryRows({Key? key, required this.categoryList, required this.homeServiceProvider,})
+      : super(key: key);
   final List<String> categoryList;
+  final HomeServiceProvider homeServiceProvider;
+
   int idx = -1;
   List<String> images = [
     "assets/images/electronics.jpeg",
@@ -12,6 +17,7 @@ class CategoryRows extends StatelessWidget {
     "assets/images/man clothing.png",
     "assets/images/woman clothing.jpg"
   ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,6 +25,7 @@ class CategoryRows extends StatelessWidget {
       child: ListView.builder(
         itemCount: categoryList.length,
         itemBuilder: (BuildContext context, index) {
+
           idx = (idx + 1) % categoryList.length;
           return Column(
             children: [
@@ -26,8 +33,11 @@ class CategoryRows extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                    /* Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) =>  ProductDetails(details: idx,)));*/
+
+                   Navigator.push(context, MaterialPageRoute(builder: (context) {
+                     return CategoryProducts(categoryName:categoryList[index] ,homeServiceProvider: homeServiceProvider,);
+                   },));
+
                   },
                   child: Container(
                       width: 580,
@@ -54,9 +64,9 @@ class CategoryRows extends StatelessWidget {
                                   color: AppColors.kPrimaryColor),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: const Icon(
+                          const Padding(
+                            padding: EdgeInsets.only(left: 8.0),
+                            child: Icon(
                               Icons.arrow_forward_ios,
                               size: 30,
                             ),

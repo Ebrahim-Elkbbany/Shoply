@@ -5,21 +5,21 @@ import 'package:shoply/features/category/view/ui/category_rows.dart';
 import 'package:shoply/features/home/logic/home_products.dart';
 
 class Category extends StatelessWidget {
-  Category({Key? key}) : super(key: key);
+  const Category({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: ChangeNotifierProvider(
-        create: (context) => HomeServiceProvider()..getAllCategory(),
+        create: (context) => HomeServiceProvider()..getAllCategory()..getCategoryProducts(categoryName: 'jewelery'),
         child: Padding(
           padding: const EdgeInsets.only(top: 50, left: 16, right: 16),
           child: Consumer<HomeServiceProvider>(
             builder: (context, homeProvider, child) {
               return Column(
                 children: [
-                  Center(
+                  const Center(
                     child: Text(
                       "Category",
                       style: TextStyle(color: Colors.black87, fontSize: 33),
@@ -31,7 +31,7 @@ class Category extends StatelessWidget {
                       width: 300,
                       height: 10,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
+                          gradient: const LinearGradient(
                             colors: [
                               Colors.black38,
                               Colors.grey,
@@ -51,15 +51,18 @@ class Category extends StatelessWidget {
                       Container(
                         height: 520,
                         decoration: BoxDecoration(
-                            color: Color(0xfff0e4e1),
+                            color: const Color(0xfff0e4e1),
                             borderRadius: BorderRadius.circular(18)),
                       ),
                       SizedBox(
                         height: 550,
                         child: CategoryRows(
-                            categoryList: homeProvider.categoryList),
+                          homeServiceProvider: homeProvider,
+                          categoryList: homeProvider.categoryList,
+                        ),
                       ),
-                    ]),
+                    ],
+                    ),
                   ),
                 ],
               );
